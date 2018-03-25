@@ -5,12 +5,13 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
+//main algorithm: to generate the level especially for the maze map
 public class LevelGenerator
 {
     private static readonly List<Vector2> SurrondVectorsList =
         new List<Vector2> {Vector2.down / 2.0f, Vector2.left / 2.0f, Vector2.up / 2.0f, Vector2.right / 2.0f};
 
+    //using List to store Vector2, the position (x,y) of the cell or road
     private static List<Vector2> _generatedCells = new List<Vector2>();
     private static List<Vector2> _unsearchedRoads = new List<Vector2>();
     private static List<Vector2> _specialRoad = new List<Vector2>();
@@ -26,6 +27,8 @@ public class LevelGenerator
         var enemyIndex = 0;
         var fenceIndex = 0;
         
+        //store the position of cells as a List<Vector2>, traverse all possible positions and calculate what the situation of this position should be
+        //trick: compare to the ordinary method which storing the situation of each point in a 2D array, this method is more elegant and efficient
         //3: -0.5, 1, 1.5, 2, 2.5, 3, 3.5
         for (float i = -0.5f; i <= currentMazeSize.x + 0.5f; i += 0.5f)
         {
@@ -65,6 +68,8 @@ public class LevelGenerator
                 else if ( i<0 || i>currentMazeSize.x || j<0 || j>currentMazeSize.y )
                 { 
                     //TODO: redesign the fence
+                    //"fence" means the outline of the maze map
+                    // for example, if the 
                     try
                     {
                         fenceCaches[fenceIndex].SetActive(true);
@@ -164,19 +169,27 @@ public class LevelGenerator
 
     private static void GenerateMaze(int width, int height, Vector2Int startPos)
     {
+        //there may be one road between two cells, the "width" and "height" describe the num of cells
+        // for example, the situation width=3 and height=3 will be:
+        // *-*-*
+        // | | |
+        // *-*-*
+        // | | |
+        // *-*-*
+        // where "*" means cell, "-" and "|" mean road
+        // if the road is passable, it will become a cell otherwise it will become a "wall"
+        
         _generatedCells.Clear();
         _unsearchedRoads.Clear();
         _specialRoad.Clear();
 
-        //width and height must be odd
-        //start from the center
-        //for example: when width=5, height=5, the startPos will be (2,2)
-//        var startPos = new Vector2Int(0, 0);
-
+        //width and height must be odd and >= 3
         _generatedCells.Add(startPos);
 
+        //Prim algorithm:1. store the 4 neighbooring roads of one selected cell as a list
         _unsearchedRoads = AddNeighborUnsearchedRoads(_unsearchedRoads, startPos, width, height);
 
+        //2. select one road from the mentioned list roadomly
         while (_unsearchedRoads.Count > 0)
         {
             int randomNum = Random.Range(0, _unsearchedRoads.Count - 1);
@@ -198,10 +211,11 @@ public class LevelGenerator
                 connectedCell0 = new Vector2Int(floorx, floory);
                 connectedCell1 = new Vector2Int(ceilx, floory);
             }
-
+            //3. if one of the neighbooring cells of this road is "connected", mark this road as "passable" meaning make it become one cell
             if (_generatedCells.Contains(connectedCell0) && _generatedCells.Contains(connectedCell1))
             {
                 _unsearchedRoads.Remove(currentWall);
+                //4. in case of dead-end roads
                 if (IsCellDeadEnd(connectedCell0, width, height) || IsCellDeadEnd(connectedCell1, width, height))
                 {
                     _specialRoad.Add(currentWall);
@@ -223,6 +237,7 @@ public class LevelGenerator
             }
             else
             {
+                
             }
         }
     }

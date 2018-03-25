@@ -118,7 +118,7 @@ public class GameLoop : MonoBehaviour
     }
 
     private void SetGameObjectColor(GameObject go, Color color)
-    {
+    {     
         Renderer rend = go.GetComponent<Renderer>();
         rend.material = new Material(Shader.Find(GlobalVariables.ShaderName));
         rend.material.SetColor("_Color", color);
@@ -126,6 +126,7 @@ public class GameLoop : MonoBehaviour
 
     private void CreateGameObjectCaches()
     {
+        //performance optimization: create all possible gameobjecs once instead of creating when needing
         GameObject wallObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
         SetGameObjectColor(wallObject, GlobalVariables.WallColor);
         GameObject coinObject = GameObject.CreatePrimitive(PrimitiveType.Sphere);
@@ -138,7 +139,6 @@ public class GameLoop : MonoBehaviour
         SetGameObjectColor(fenceObject, GlobalVariables.FenceColor);
         GameObject enemyObject = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         SetGameObjectColor(enemyObject, GlobalVariables.EnemyColor);
-        //performance optimization: create all needed objects once and set as caches
         for (int i = 0; i < GlobalVariables.CalMaxObjectsOneLevel(); i++)
         {
             var wall = Instantiate(wallObject);
