@@ -52,7 +52,7 @@ public class GameLoop : MonoBehaviour
         plane.transform.RotateAround(Vector3.zero, Vector3.left, 90f);
         plane.transform.localPosition = new Vector3(0, 0, 0.26f);
         plane.transform.localScale = new Vector3(1000, 1000, 1000);
-        //plane color???
+        SetGameObjectColor(plane, GlobalVariables.PlaneColor);
                 
         CreateGameObjectCaches();
         GenerateNewLevel();

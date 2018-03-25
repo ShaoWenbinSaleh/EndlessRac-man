@@ -73,5 +73,6 @@ public static class GlobalVariables
 	public static readonly Color CoinColor = new Color(1f, 0.76f, 0f);
 	public static readonly Color BonusColor = new Color(1f, 0.76f, 0f);
 	public static readonly Color EnemyColor = new Color(1f, 0f, 0.25f);
+	public static readonly Color PlaneColor = new Color(0.51f, 0.51f, 0.51f);
 
 }
