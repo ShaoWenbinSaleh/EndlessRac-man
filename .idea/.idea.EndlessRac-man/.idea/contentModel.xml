@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$USER_HOME$/Library/Caches/Rider2017.3/resharper-host/local/Transient/ReSharperHost/v11/SolutionCaches/_EndlessRac-man.-1050861338.00" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="BasicCharacter.cs" t="Include" />
+        <e p="BasicEnemyCharacter.cs" t="Include" />
+        <e p="CharacterFactory.cs" t="Include" />
+        <e p="Editor" t="Include">
+          <e p="TagsEditor.cs" t="Include" />
+        </e>
+        <e p="GameLoop.cs" t="Include" />
+        <e p="GameManager.cs" t="Include" />
+        <e p="GlobalVariables.cs" t="Include" />
+        <e p="LevelGenerator.cs" t="Include" />
+        <e p="PlayerCharacter.cs" t="Include" />
+        <e p="Plugins" t="Include">
+          <e p="Editor" t="Include">
+            <e p="JetBrains" t="Include">
+              <e p="Unity3DRider.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Resources" t="Include">
+          <e p="ToonShader.shader" t="Include" />
+        </e>
+        <e p="StateMachine.cs" t="Include" />
+      </e>
+      <e p="EndlessRac-man.sln" t="IncludeFlat" />
+      <e p="Library" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
+    </e>
+  </component>
+</project>
